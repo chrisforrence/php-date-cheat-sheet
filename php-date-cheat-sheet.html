@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PHP date() Cheat Sheet</title>
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+    <style>
+    @page {
+        size: auto;
+        margin: 7mm 7mm 7mm 7mm;
+    }
+    
+    html,
+    body,
+    div {
+        padding: 0;
+        margin: 0;
+    }
+    
+    * {
+        font-family: 'Slabo 27px', serif;
+    }
+    
+    table {
+        -moz-column-count: 2;
+        column-count: 2;
+        border-collapse: collapse;
+    }
+    
+    table td {
+        vertical-align: top;
+        margin-top: 1em;
+        border-bottom: 1px solid #999;
+        -webkit-column-break-inside: avoid;
+        text-align: justify;
+    }
+    
+    tr {
+        -webkit-column-break-inside: avoid;
+    }
+    
+    td:first-of-type {
+        font-size: x-large;
+        text-align: center;
+        width: 2em;
+    }
+    
+    .example {
+        font-size: smaller;
+        font-style: italic;
+    }
+    
+    .example:before {
+        content: 'Ex: ';
+    }
+    
+    div {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+        -moz-column-gap: 1em;
+        -webkit-column-gap: 1em;
+        column-gap: 1em;
+    }
+    
+    .day,
+    .week,
+    .month,
+    .year,
+    .time,
+    .timezone,
+    .fulldate {}
+    
+    .day > td,
+    .month > td,
+    .time > td,
+    .full > td {
+        background-color: #FFFFFF;
+    }
+    
+    .week > td,
+    .year > td,
+    .timezone > td {
+        background-color: #EEEEEE;
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <table>
+            <tr>
+                <td></td>
+                <td><strong>Date Formatting</strong></td>
+            </tr>
+            <tr class="day">
+                <td>d</td>
+                <td>Day of the month, 2 digits with leading zeros
+                    <br /><span class="example">01 to 31</span></td>
+            </tr>
+            <tr class="day">
+                <td>D</td>
+                <td>A textual representation of a day, three letters
+                    <br /><span class="example">Mon through Sun</span></td>
+            </tr>
+            <tr class="day">
+                <td>j</td>
+                <td>Day of the month without leading zeros
+                    <br /><span class="example">1 to 31</span></td>
+            </tr>
+            <tr class="day">
+                <td>l</td>
+                <td>A full textual representation of the day of the week
+                    <br /><span class="example">Sunday through Saturday</span></td>
+            </tr>
+            <tr class="day">
+                <td>N</td>
+                <td>ISO-8601 numeric representation of the day of the week
+                    <br /><span class="example">1 (for Monday) through 7 (for Sunday)</span></td>
+            </tr>
+            <tr class="day">
+                <td>S</td>
+                <td>English ordinal suffix for the day of the month, 2 characters
+                    <br /><span class="example">st, nd, rd or th. Works well with j</span></td>
+            </tr>
+            <tr class="day">
+                <td>w</td>
+                <td>Numeric representation of the day of the week
+                    <br /><span class="example">0 (for Sunday) through 6 (for Saturday)</span></td>
+            </tr>
+            <tr class="day">
+                <td>z</td>
+                <td>The day of the year (starting from 0)
+                    <br /><span class="example">0 through 365</span></td>
+            </tr>
+            <tr class="week">
+                <td>W</td>
+                <td>ISO-8601 week number of year, weeks starting on Monday
+                    <br /><span class="example">42 (the 42nd week in the year)</span></td>
+            </tr>
+            <tr class="month">
+                <td>F</td>
+                <td>A full textual representation of a month, such as January or March
+                    <br /><span class="example">January through December</span></td>
+            </tr>
+            <tr class="month">
+                <td>m</td>
+                <td>Numeric representation of a month, with leading zeros
+                    <br /><span class="example">01 through 12</span></td>
+            </tr>
+            <tr class="month">
+                <td>M</td>
+                <td>A short textual representation of a month, three letters
+                    <br /><span class="example">Jan through Dec</span></td>
+            </tr>
+            <tr class="month">
+                <td>n</td>
+                <td>Numeric representation of a month, without leading zeros
+                    <br /><span class="example">1 through 12</span></td>
+            </tr>
+            <tr class="month">
+                <td>t</td>
+                <td>Number of days in the given month
+                    <br /><span class="example">28 through 31</span></td>
+            </tr>
+            <tr class="year">
+                <td>L</td>
+                <td>Whether it's a leap year
+                    <br /><span class="example">1 if it is a leap year, 0 otherwise.</span></td>
+            </tr>
+            <tr class="year">
+                <td>o</td>
+                <td>ISO-8601 week-numbering year. This has the same value as Y, except that if the ISO week number (W) belongs to the previous or next year, that year is used instead.
+                    <br /><span class="example">1999 or 2003</span></td>
+            </tr>
+            <tr class="year">
+                <td>Y</td>
+                <td>A full numeric representation of a year, 4 digits
+                    <br /><span class="example">1999 or 2003</span></td>
+            </tr>
+            <tr class="year">
+                <td>y</td>
+                <td>A two digit representation of a year
+                    <br /><span class="example">99 or 03</span></td>
+            </tr>
+            <tr class="time">
+                <td>a</td>
+                <td>Lowercase Ante meridiem and Post meridiem
+                    <br /><span class="example">am or pm</span></td>
+            </tr>
+            <tr class="time">
+                <td>A</td>
+                <td>Uppercase Ante meridiem and Post meridiem
+                    <br /><span class="example">AM or PM</span></td>
+            </tr>
+            <tr class="time">
+                <td>B</td>
+                <td>Swatch Internet time
+                    <br /><span class="example">000 through 999</span></td>
+            </tr>
+            <tr class="time">
+                <td>g</td>
+                <td>12-hour format of an hour without leading zeros
+                    <br /><span class="example">1 through 12</span></td>
+            </tr>
+            <tr class="time">
+                <td>G</td>
+                <td>24-hour format of an hour without leading zeros
+                    <br /><span class="example">0 through 23</span></td>
+            </tr>
+            <tr class="time">
+                <td>h</td>
+                <td>12-hour format of an hour with leading zeros
+                    <br /><span class="example">01 through 12</span></td>
+            </tr>
+            <tr class="time">
+                <td>H</td>
+                <td>24-hour format of an hour with leading zeros
+                    <br /><span class="example">00 through 23</span></td>
+            </tr>
+            <tr class="time">
+                <td>i</td>
+                <td>Minutes with leading zeros
+                    <br /><span class="example">00 to 59</span></td>
+            </tr>
+            <tr class="time">
+                <td>s</td>
+                <td>Seconds, with leading zeros
+                    <br /><span class="example">00 through 59</span></td>
+            </tr>
+            <tr class="time">
+                <td>u</td>
+                <td>Microseconds. date() will always generate 000000 since it takes an integer parameter.
+                    <br /><span class="example">654321</span></td>
+            </tr>
+            <tr class="time">
+                <td>v</td>
+                <td>Milliseconds. date() will always generate 000000 since it takes an integer parameter.
+                    <br /><span class="example">654</span></td>
+            </tr>
+            <tr class="timezone">
+                <td>e</td>
+                <td>Timezone identifier
+                    <br /><span class="example">UTC, GMT, Atlantic/Azores</span></td>
+            </tr>
+            <tr class="timezone">
+                <td>I</td>
+                <td>Whether or not the date is in daylight saving time
+                    <br /><span class="example">1 if Daylight Saving Time, 0 otherwise.</span></td>
+            </tr>
+            <tr class="timezone">
+                <td>O</td>
+                <td>Difference to Greenwich time (GMT) in hours
+                    <br /><span class="example">+0200</span></td>
+            </tr>
+            <tr class="timezone">
+                <td>P</td>
+                <td>Difference to Greenwich time (GMT) with colon between hours and minutes
+                    <br /><span class="example">+02:00</span></td>
+            </tr>
+            <tr class="timezone">
+                <td>T</td>
+                <td>Timezone abbreviation
+                    <br /><span class="example">EST, MDT ...</span></td>
+            </tr>
+            <tr class="timezone">
+                <td>Z</td>
+                <td>Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive.
+                    <br /><span class="example"> -43200 through 50400</span></td>
+            </tr>
+            <tr class="full">
+                <td>c</td>
+                <td>ISO 8601 date
+                    <br /><span class="example">2004-02-12T15:19:21+00:00</span></td>
+            </tr>
+            <tr class="full">
+                <td>r</td>
+                <td>RFC 2822 formatted date
+                    <br /><span class="example">Thu, 21 Dec 2000 16:01:07 +0200</span></td>
+            </tr>
+            <tr class="full">
+                <td>U</td>
+                <td>Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
